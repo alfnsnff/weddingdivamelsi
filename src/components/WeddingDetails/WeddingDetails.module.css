@@ -1,0 +1,347 @@
+.weddingDetails {
+  background-image: linear-gradient(rgba(45, 51, 107, 0.4), rgba(45, 51, 107, 0.4)), 
+                    url('/images/image1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sectionHeader {
+  text-align: center;
+  /* margin-bottom: 3rem; */
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--color-background-light);
+  font-family: 'Great Vibes', cursive;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--color-white-alpha-90);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.decorativeElement {
+  font-size: 1.8rem;
+  color: var(--color-accent-primary);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.decorativeLine {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white-alpha-20);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-white-alpha-20);
+  border-radius: 15px;
+  max-width: 400px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--color-background-light);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.eventCard:hover {
+  transform: translateY(-5px);
+  background: var(--color-white-alpha-20);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 10px 30px var(--color-primary-darkest-alpha-30);
+}
+
+.eventTitle {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-background-light);
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  position: relative;
+}
+
+.eventTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.eventInfo {
+  margin: 1.5rem 0;
+}
+
+.bigDateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dayText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
+   color: var(--color-accent-primary);
+}
+
+.bigDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.month {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  color: var(--color-white-alpha-90);
+  /* line-height: 1; */
+  margin: 0;
+}
+
+.dateNumber {
+  font-size: 3.5rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+   color: var(--color-accent-primary);
+  line-height: 1;
+  margin: 0;
+  /* text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); */
+}
+
+.year {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  color: var(--color-white-alpha-90);
+  /* line-height: 1; */
+  margin: 0;
+}
+
+.timeRange {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  line-height: 1.4;
+  color: var(--color-white-alpha-90);
+}
+
+.divider {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--color-white-alpha-60), transparent);
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.venueInfo {
+  margin: 1.5rem 0;
+}
+
+.venue {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  max-width: 350px;
+  line-height: 1.6;
+  color: var(--color-white-alpha-90);
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .contentContainer {
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+  }
+  
+  .eventCard {
+    max-width: none;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .weddingDetails {
+    padding: 3rem 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .eventCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .eventTitle {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .bigDateContainer {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+
+
+
+  .dateNumber {
+    font-size: 3rem;
+  }
+
+  .dayText {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .timeRange {
+    font-size: 1rem;
+  }
+
+  .venue {
+    font-size: 0.95rem;
+  }
+
+  .decorativeLine {
+    width: 80px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .weddingDetails {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .eventCard {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .eventTitle {
+    font-size: 1.4rem;
+  }
+
+  .dateNumber {
+    font-size: 2.5rem;
+  }
+
+  .dayText {
+    font-size: 1rem;
+  }
+
+  .timeRange {
+    font-size: 0.95rem;
+  }
+
+  .venue {
+    font-size: 0.9rem;
+  }
+
+  .decorativeElement {
+    font-size: 1.5rem;
+  }
+
+  .decorativeLine {
+    width: 60px;
+  }
+}
+
+/* Animation effects */
+.eventCard {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.eventCard:nth-child(1) { animation-delay: 0.2s; }
+.eventCard:nth-child(2) { animation-delay: 0.4s; }
+.eventCard:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

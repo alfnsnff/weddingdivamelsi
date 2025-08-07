@@ -1,0 +1,15 @@
+:root {
+  margin: 0;
+  padding: 0;
+  background-color: #06063b;
+}
+
+html {
+  /* Selalu sediakan ruang untuk scrollbar, mencegah pergeseran layout */
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}

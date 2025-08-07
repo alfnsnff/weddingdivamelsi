@@ -1,0 +1,388 @@
+.gallerySection {
+  padding: 8rem 2rem;
+  background: var(--color-background-light);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+    overflow: hidden;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  font-family: 'Great Vibes', cursive;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.decorativeElement {
+  font-size: 1.8rem;
+  color: var(--color-accent-primary);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.decorativeLine {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Update grid layout to a DENSE grid */
+.gallery {
+  display: grid;
+  /* 4 kolom untuk desktop */
+  grid-template-columns: repeat(4, 1fr);
+  /* Tinggi baris dasar yang fleksibel */
+  grid-auto-rows: 250px;
+  /* Ini adalah kuncinya: mengisi celah kosong secara otomatis */
+  grid-auto-flow: dense;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galleryItem {
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--color-background-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--color-primary-darkest-alpha-20);
+  border: 1px solid var(--color-border);
+}
+
+
+/* Kelas untuk ukuran gambar */
+.regular {
+  /* Default, tidak perlu aturan khusus */
+}
+.wide {
+  grid-column: span 2; /* Mengambil 2 kolom */
+}
+.tall {
+  grid-row: span 2; /* Mengambil 2 baris */
+}
+
+.galleryItem:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px var(--color-primary-darkest-alpha-30);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.galleryItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Pastikan gambar menutupi area tanpa distorsi */
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.galleryItem:hover img {
+  transform: scale(1.05); /* Sedikit zoom saat hover */
+}
+
+/* --- RESPONSIVE STYLES --- */
+
+/* Tablet (<= 1024px) - Tetap Grid, lebih sedikit kolom */
+@media (max-width: 1024px) {
+  .gallery {
+    /* Mengubah ke 3 kolom */
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px; /* Sesuaikan tinggi baris jika perlu */
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile (<= 768px) - Tetap Grid, lebih sedikit kolom */
+@media (max-width: 768px) {
+  .gallery {
+    /* Mengubah ke 2 kolom */
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .gallerySection {
+    padding: 5rem 0.8rem;
+  }
+  
+  .gallery {
+    /* Mengubah ke 2 kolom */
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+    gap: 0.5rem;
+  }
+  
+  .wide {
+    /* Di layar kecil, gambar lebar bisa dibuat mengambil lebar penuh */
+    grid-column: span 2;
+  }
+
+  .galleryItem {
+    margin-bottom: 0; /* Tidak perlu margin lagi */
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 1.5rem;
+  }
+  
+  .decorativeLine {
+    width: 60px;
+  }
+  
+  .decorativeElement {
+    font-size: 1.3rem;
+  }
+  
+  .ornament {
+    gap: 0.8rem;
+    margin: 1rem 0;
+  }
+}
+
+/* Loading state */
+.galleryItem img {
+  background: linear-gradient(90deg, var(--color-primary-medium) 25%, var(--color-border) 50%, var(--color-primary-medium) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.galleryItem img[src] {
+  background: none;
+  animation: none;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Entrance animations */
+.galleryItem {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.galleryItem:nth-child(1) { animation-delay: 0.1s; }
+.galleryItem:nth-child(2) { animation-delay: 0.15s; }
+.galleryItem:nth-child(3) { animation-delay: 0.2s; }
+.galleryItem:nth-child(4) { animation-delay: 0.25s; }
+.galleryItem:nth-child(5) { animation-delay: 0.3s; }
+.galleryItem:nth-child(6) { animation-delay: 0.35s; }
+.galleryItem:nth-child(7) { animation-delay: 0.4s; }
+.galleryItem:nth-child(8) { animation-delay: 0.45s; }
+.galleryItem:nth-child(9) { animation-delay: 0.5s; }
+.galleryItem:nth-child(10) { animation-delay: 0.55s; }
+.galleryItem:nth-child(11) { animation-delay: 0.6s; }
+.galleryItem:nth-child(12) { animation-delay: 0.65s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Dekorasi bunga */
+.flowerDecoration {
+  position: absolute;
+  width: 50%; /* Ukuran default */
+  height: auto;
+  z-index: 0; /* Pastikan berada di belakang konten */
+  pointer-events: none; /* Agar tidak mengganggu interaksi mouse */
+}
+
+.topLeftDecoration {
+  top: -25px; /* Posisi di atas */
+  left: -200px; /* Posisi di kiri */
+}
+
+.topRightDecoration {
+  top: -25px; /* Posisi di atas */
+  right: -200px; /* Posisi di kanan */
+  transform: scaleX(-1); /* Flip secara horizontal */
+}
+
+.bottomLeftDecoration {
+  bottom: 0px; /* Posisi di bawah */
+  left: -200px; /* Posisi di kiri */
+  transform: rotate(180deg); /* Putar gambar untuk bagian bawah */
+}
+
+.bottomMidDecoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 375px;           /* Pastikan ini tinggi asli gambar Anda */
+  background-image: url('/images/flower1.png');
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  
+  /* Ganti 'auto' dengan tinggi eksplisit untuk mencegah peregangan */
+  background-size: auto 375px; /* Lebar otomatis, tinggi sesuai elemen */
+
+  z-index: 0;
+  pointer-events: none;
+  
+  /* Hapus transform untuk sementara untuk melihat apakah ini penyebabnya */
+  transform: scaleX(-1) rotate(180deg);
+}
+
+
+.bottomRightDecoration {
+  bottom: 0px; /* Posisi di bawah */
+  right: -200px; /* Posisi di kanan */
+  transform: scaleX(-1) rotate(180deg); /* Putar gambar untuk bagian bawah */
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 1024px) {
+
+
+  .topLeftDecoration {
+    top: -10px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -10px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -10px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -10px;
+    right: -150px;
+  }
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .flowerDecoration {
+    width: 70%; /* Ukuran lebih kecil untuk layar sangat kecil */
+  }
+
+
+  .topLeftDecoration {
+    top: -10px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -10px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -10px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -10px;
+    right: -150px;
+  }
+
+  .bottomMidDecoration {
+    height: 200px;   
+    background-size: auto 200px; /* Lebar otomatis, tinggi sesuai elemen */
+  }
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 480px) {
+  .flowerDecoration {
+    width: 90%; /* Ukuran lebih kecil untuk layar sangat kecil */
+  }
+
+  .topLeftDecoration {
+    top: -5px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -5px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -5px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -5px;
+    right: -150px;
+  }
+
+  /* .bottomMidDecoration {
+  bottom: 0px;
+  left: 50%; 
+  transform: translateX(-50%) rotate(180deg); 
+  width: 100%;
+  height: auto; 
+  } */
+
+}
+
+/* Pastikan konten utama berada di atas dekorasi */
+
+
+/* Wrapper untuk konten utama */
+.contentWrapper {
+  position: relative;
+  z-index: 2; /* Pastikan konten utama berada di atas dekorasi bunga */
+}

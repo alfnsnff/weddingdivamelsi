@@ -1,0 +1,79 @@
+:root {
+  /* Color Palette */
+  --color-primary-light: #FFF2F2;    /* Light pink/white */
+  --color-primary-lightgray: #f3e6e6;    /* Light pink/white */
+  --color-primary-medium: #A9B5DF;   /* Soft blue */
+  --color-primary-dark: #2D336B;  /* Dark blue */
+  --color-primary-darkest: #151558;  /* Dark blue */
+  --color-accent: #fad643;           /* Yellow accent */
+  
+  /* Semantic color names */
+  --color-background-light: var(--color-primary-light);
+  /* --color-background-gradient-start: var(--color-primary-darkest);
+  --color-background-gradient-end: var(--color-primary-dark); */
+    --color-background-gradient-start: var(--color-primary-light);
+  --color-background-gradient-end: var(--color-primary-medium);
+  --color-text-primary: var(--color-primary-darkest);
+  --color-text-secondary: var(--color-primary-dark);
+  --color-text-light: var(--color-primary-light);
+  --color-text-light-secondary: var(--color-primary-lightgray);
+  --color-accent-primary: var(--color-accent);
+  --color-border: var(--color-primary-medium);
+  --color-shadow: var(--color-primary-darkest);
+  
+  /* Transparency variations */
+  --color-primary-darkest-alpha-20: rgba(45, 51, 107, 0.2);
+  --color-primary-darkest-alpha-30: rgba(45, 51, 107, 0.3);
+  --color-primary-darkest-light-30: rgba(189, 192, 218, 0.3);
+  --color-primary-medium-alpha-20: rgba(169, 181, 223, 0.2);
+  --color-accent-alpha-30: rgba(250, 214, 67, 0.3);
+  --color-white-alpha-90: rgba(255, 255, 255, 0.9);
+  --color-white-alpha-60: rgba(255, 255, 255, 0.6);
+  --color-white-alpha-20: rgba(255, 255, 255, 0.2);
+}
+
+/* Global reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-light);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-text-primary);
+}
+
+/* Common gradients */
+.gradient-background {
+  background: linear-gradient(135deg, var(--color-background-gradient-start) 0%, var(--color-background-gradient-end) 100%);
+}
+
+.gradient-accent-line {
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+/* Common animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}

@@ -1,0 +1,8 @@
+.home {
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, var(--color-background-gradient-start) 0%, var(--color-background-gradient-end) 100%); */
+}
+
+.section {
+  padding: 2rem 0;
+}

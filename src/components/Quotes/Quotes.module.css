@@ -1,0 +1,142 @@
+.quotesSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: var(--color-primary-darkest);
+  color: var(--color-text-light);
+  gap: 2rem;
+}
+
+.imageContainer {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.quotesImage {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px var(--color-primary-darkest-alpha-20);
+  transition: transform 0.6s ease;
+  border: 2px solid var(--color-border);
+}
+
+.quotesImage:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px var(--color-primary-darkest-alpha-30);
+}
+
+.textContainer {
+  text-align: center;
+  max-width: 800px;
+}
+
+.quotesTitle {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  margin-bottom: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  position: relative;
+}
+
+.quotesTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+.quotesText {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: var(--color-text-light);
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .quotesSection {
+    padding: 3rem 1rem;
+  }
+
+  .imageContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .quotesImage {
+    width: 280px;
+    height: 350px;
+  }
+
+  .quotesTitle {
+    font-size: 2rem;
+  }
+
+  .quotesText {
+    font-size: 1.1rem;
+  }
+
+  .textContainer {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quotesImage {
+    width: 250px;
+    height: 300px;
+  }
+
+  .quotesTitle {
+    font-size: 1.8rem;
+  }
+
+  .quotesText {
+    font-size: 0.8rem;
+  }
+
+  .textContainer {
+    padding: 1rem;
+  }
+}
+
+/* Animation effects */
+.quotesSection {
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image hover effects */
+.quotesImage:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.quotesImage:nth-child(2) {
+  animation-delay: 0.4s;
+}

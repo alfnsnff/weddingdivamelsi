@@ -1,0 +1,79 @@
+.thanks {
+  position: relative;
+  padding: 6rem 2rem;
+  /* Ganti 'your-footer-image.jpg' dengan nama file gambar Anda */
+  background-image: url('/images/gallery-3.JPG');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Sesuaikan opasitas overlay di sini (0.5 = 50%) */
+  background-color: rgba(45, 51, 107, 0.5); 
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.title {
+        color: var(--color-accent-primary);
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.paragraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.names {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+    color: var(--color-accent-primary);
+}
+
+/* Desain Responsif */
+@media (max-width: 768px) {
+  .thanks {
+    padding: 4rem 1.5rem;
+    min-height: 80vh;
+  }
+  .title {
+    font-size: 2.8rem;
+  }
+  .names {
+    font-size: 2.5rem;
+  }
+  .paragraph {
+    font-size: 1rem;
+  }
+}

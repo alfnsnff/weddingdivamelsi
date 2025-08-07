@@ -1,0 +1,290 @@
+.countdownSection {
+  background: var(--color-primary-darkest);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* .countdownSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 80% 80%, var(--color-accent-alpha-30) 0%, transparent 50%);
+  pointer-events: none;
+} */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeader {
+  text-align: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  font-family: 'Great Vibes', cursive;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px var(--color-primary-light-alpha-30);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-light-secondary);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.decorativeElement {
+  font-size: 1.8rem;
+  color: var(--color-accent-primary);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.decorativeLine {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 4rem 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timeUnit {
+  position: relative;
+}
+
+.timeCard {
+  background: var(--color-background-light);
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  box-shadow: 
+    inset 0 1px 0 var(--color-white-alpha-90);
+  border: 2px solid var(--color-primary-medium-alpha-20);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-accent-alpha-30), transparent);
+  transition: left 0.8s ease;
+}
+
+.timeCard:hover::before {
+  left: 100%;
+}
+
+.timeCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    inset 0 1px 0 var(--color-white-alpha-90);
+  border-color: var(--color-accent-primary);
+}
+
+.timeValue {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.5rem;
+}
+
+.timeLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.labelPrimary {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.labelSecondary {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.weddingDate {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: var(--color-white-alpha-60);
+  border-radius: 20px;
+  border: 1px solid var(--color-primary-medium-alpha-20);
+  backdrop-filter: blur(10px);
+}
+
+.dateText {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.dateValue {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-accent-primary);
+}
+
+.message {
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.messageText {
+  font-size: 1.2rem;
+  color: var(--color-text-light-secondary);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+}
+
+.messageText::before,
+.messageText::after {
+  content: '"';
+  font-size: 2rem;
+  color: var(--color-accent-primary);
+  position: absolute;
+  top: -10px;
+}
+
+.messageText::before {
+  left: -20px;
+}
+
+.messageText::after {
+  right: -20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .timeCard {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .timeValue {
+    font-size: 2.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .weddingDate {
+    padding: 1.5rem;
+  }
+
+  .countdownSection {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .timeCard {
+    padding: 1rem;
+  }
+
+  .timeValue {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .dateValue {
+    font-size: 1.5rem;
+  }
+
+  .messageText::before,
+  .messageText::after {
+    font-size: 1.5rem;
+    top: -5px;
+  }
+
+  .messageText::before {
+    left: -15px;
+  }
+
+  .messageText::after {
+    right: -15px;
+  }
+}
+
+.timeCard {
+  animation: fadeInUp 0.8s ease;
+  animation-fill-mode: both;
+}
+
+.timeCard:nth-child(1) { animation-delay: 0.1s; }
+.timeCard:nth-child(2) { animation-delay: 0.2s; }
+.timeCard:nth-child(3) { animation-delay: 0.3s; }
+.timeCard:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,399 @@
+.storySection {
+  padding: 8rem 6rem;
+  background: linear-gradient(135deg, var(--color-background-gradient-start) 0%, var(--color-background-gradient-end) 100%);
+  color: var(--color-text-primary);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+    overflow: hidden;
+}
+
+.sectionHeader {
+  text-align: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  font-family: 'Great Vibes', cursive;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.decorativeElement {
+  font-size: 1.8rem;
+  color: var(--color-accent-primary);
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.decorativeLine {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+
+/* Content Container - Flexbox Layout */
+.contentContainer {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+
+/* Reverse untuk container kedua */
+.contentContainer:nth-of-type(3) {
+  flex-direction: row-reverse;
+}
+
+/* Image Styling */
+.imageContainer {
+  flex: 0 0 350px; /* Fixed width, no grow/shrink */
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px var(--color-primary-darkest-alpha-20);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid var(--color-border);
+}
+
+.imageContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px var(--color-primary-darkest-alpha-30);
+}
+
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.storyImage:hover {
+  transform: scale(1.05);
+}
+
+/* Text Containers */
+.textContainerfirst,
+.textContainersecond {
+  flex: 1; /* Take remaining space */
+  padding: 1rem;
+}
+
+.textContainerfirst {
+  text-align: left;
+}
+
+.textContainersecond {
+  text-align: right;
+}
+
+/* Title Styling */
+.storyTitle {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  position: relative;
+  line-height: 1.2;
+}
+
+/* Different underline positions */
+.textContainerfirst .storyTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-primary), transparent);
+  border-radius: 1px;
+}
+
+.textContainersecond .storyTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary));
+  border-radius: 1px;
+}
+
+/* Text Content */
+.storyText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contentContainer,
+  .contentContainer:nth-of-type(3) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .imageContainer {
+    flex: none;
+    width: 300px;
+    height: 400px;
+  }
+
+  .textContainerfirst,
+  .textContainersecond {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .textContainerfirst .storyTitle::after,
+  .textContainersecond .storyTitle::after {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent) !important;
+  }
+
+  .storySection {
+    padding: 10rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .storyTitle {
+    font-size: 1.8rem;
+  }
+
+  .storyText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageContainer {
+    width: 250px;
+    height: 350px;
+  }
+
+  .storySection {
+    padding: 10rem 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .storyTitle {
+    font-size: 1.6rem;
+  }
+
+  .contentContainer {
+    gap: 1rem;
+  }
+
+  .decorativeLine {
+    width: 80px;
+  }
+
+  .decorativeElement {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animation effects */
+.contentContainer {
+  animation: fadeInUp 0.8s ease;
+}
+
+.contentContainer:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.contentContainer:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elegant decorative background */
+.storySection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, var(--color-accent-alpha-30) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, var(--color-accent-alpha-30) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Dekorasi bunga */
+.flowerDecoration {
+  position: absolute;
+  width: 50%; /* Ukuran default */
+  height: auto;
+  z-index: 0; /* Pastikan berada di belakang konten */
+  pointer-events: none; /* Agar tidak mengganggu interaksi mouse */
+}
+
+.topLeftDecoration {
+  top: -25px; /* Posisi di atas */
+  left: -200px; /* Posisi di kiri */
+}
+
+.topRightDecoration {
+  top: -25px; /* Posisi di atas */
+  right: -200px; /* Posisi di kanan */
+  transform: scaleX(-1); /* Flip secara horizontal */
+}
+
+.bottomLeftDecoration {
+  bottom: -25px; /* Posisi di bawah */
+  left: -200px; /* Posisi di kiri */
+  transform: rotate(180deg); /* Putar gambar untuk bagian bawah */
+}
+
+.bottomRightDecoration {
+  bottom: -25px; /* Posisi di bawah */
+  right: -200px; /* Posisi di kanan */
+  transform: scaleX(-1) rotate(180deg); /* Putar gambar untuk bagian bawah */
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 1024px) {
+
+
+  .topLeftDecoration {
+    top: -10px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -10px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -10px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -10px;
+    right: -150px;
+  }
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+
+  .flowerDecoration {
+    width: 70%; /* Ukuran lebih kecil untuk layar sangat kecil */
+  }
+
+
+  .topLeftDecoration {
+    top: -10px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -10px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -10px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -10px;
+    right: -150px;
+  }
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 480px) {
+  .flowerDecoration {
+    width: 90%; /* Ukuran lebih kecil untuk layar sangat kecil */
+  }
+
+  .topLeftDecoration {
+    top: -10px; /* Posisi lebih dekat ke tepi */
+    left: -150px;
+  }
+
+  .topRightDecoration {
+    top: -10px;
+    right: -150px;
+  }
+
+  .bottomLeftDecoration {
+    bottom: -10px;
+    left: -150px;
+  }
+
+  .bottomRightDecoration {
+    bottom: -10px;
+    right: -150px;
+  }
+}
+
+/* Pastikan konten utama berada di atas dekorasi */
+
+
+/* Wrapper untuk konten utama */
+.contentWrapper {
+  position: relative;
+  z-index: 2; /* Pastikan konten utama berada di atas dekorasi bunga */
+}
