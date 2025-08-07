@@ -29,14 +29,14 @@ const Gallery: React.FC = () => {
 
       {/* Dekorasi bunga di atas kiri */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topLeftDecoration}`}
       />
 
       {/* Dekorasi bunga di atas kanan */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topRightDecoration}`}
       />

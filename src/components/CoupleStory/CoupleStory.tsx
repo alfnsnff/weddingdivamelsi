@@ -6,28 +6,28 @@ const CoupleStory: React.FC = () => {
     <div className={styles.storySection}>
       {/* Dekorasi bunga di atas kiri */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topLeftDecoration}`}
       />
 
       {/* Dekorasi bunga di atas kanan */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topRightDecoration}`}
       />
 
       {/* Dekorasi bunga di bawah kiri */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.bottomLeftDecoration}`}
       />
 
       {/* Dekorasi bunga di bawah kanan */}
       <img
-        src="/images/flower-decoration.png"
+        src="/images/flower-decoration-1.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.bottomRightDecoration}`}
       />

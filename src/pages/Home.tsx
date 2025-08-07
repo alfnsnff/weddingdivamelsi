@@ -15,50 +15,72 @@ const Home = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const quotesRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null); // 1. Ref untuk elemen audio
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const wasPlayingRef = useRef(false);
 
-  // Efek ini berjalan sekali saat komponen dimuat (termasuk saat refresh)
-  // untuk mereset posisi scroll ke atas.
+  // Efek untuk mereset posisi scroll ke atas saat refresh
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
   }, []);
 
-  // Efek ini mengelola penguncian scroll berdasarkan state undangan.
+  // Efek untuk mengunci scroll saat undangan belum dibuka
   useEffect(() => {
-    // Terapkan atau hapus kelas no-scroll berdasarkan state
     if (!isInvitationOpen) {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
     }
-
-    // Fungsi cleanup untuk memastikan kelas dihapus saat komponen unmount
+    // Cleanup
     return () => {
       document.body.classList.remove('no-scroll');
     };
   }, [isInvitationOpen]);
 
+  // Efek untuk menjeda/melanjutkan musik saat tab browser tidak aktif
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      // Jika halaman disembunyikan
+      if (document.hidden) {
+        // Ingat apakah musik sedang berputar, lalu jeda
+        if (isPlaying) {
+          wasPlayingRef.current = true;
+          audioRef.current?.pause();
+          setIsPlaying(false);
+        }
+      } 
+      // Jika halaman ditampilkan kembali
+      else {
+        // Jika sebelumnya musik berputar, putar kembali
+        if (wasPlayingRef.current) {
+          audioRef.current?.play();
+          setIsPlaying(true);
+          wasPlayingRef.current = false; // Reset ref
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [isPlaying]);
+
+  // Fungsi saat tombol "Buka Undangan" ditekan
   const handleOpenInvitation = () => {
     setIsInvitationOpen(true);
-
-    // 2. Putar musik saat undangan dibuka
-    // Browser modern mungkin memerlukan interaksi pengguna untuk memutar audio,
-    // mengklik tombol ini sudah termasuk interaksi.
     audioRef.current?.play().catch(error => {
-      // Menangani error jika autoplay diblokir
       console.log("Autoplay was prevented:", error);
     });
-
     setIsPlaying(true);
 
-    // Scroll ke bagian Quotes setelah state diperbarui
     setTimeout(() => {
       quotesRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+    }, 100);
   };
 
-  // 3. Fungsi untuk toggle musik
+  // Fungsi untuk toggle tombol musik
   const toggleMusic = () => {
     if (isPlaying) {
       audioRef.current?.pause();
@@ -70,24 +92,20 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-         {isInvitationOpen && <Header />}
+      {isInvitationOpen && <Header />}
 
-      {/* 3. Tambahkan elemen audio, pastikan path-nya benar */}
-      {/* Ganti 'your-song.mp3' dengan nama file musik Anda */}
       <audio ref={audioRef} src="/music/main.mp3" loop />
 
       <div id="hero">
         <Hero onOpenInvitation={handleOpenInvitation} isInvitationOpen={isInvitationOpen} />
       </div>
 
-      {/* 4. Tampilkan tombol hanya jika undangan sudah dibuka */}
       {isInvitationOpen && <MusicButton isPlaying={isPlaying} onToggle={toggleMusic} />}
 
       <div ref={quotesRef}>
         <Quotes />
       </div>
 
-      {/* 2. Tambahkan ID ke semua section lainnya */}
       <div id="couple-story">
         <CoupleStory />
       </div>
@@ -101,7 +119,6 @@ const Home = () => {
       <div id="gallery">
         <Gallery />
       </div>
-
 
       <div id="comments">
         <Comments />

@@ -261,7 +261,7 @@
   }
 }
 
-/* Elegant decorative background */
+/* Elegant decorative background
 .storySection::before {
   content: '';
   position: absolute;
@@ -274,7 +274,7 @@
     radial-gradient(circle at 75% 75%, var(--color-accent-alpha-30) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
-}
+} */
 
 /* Dekorasi bunga */
 .flowerDecoration {

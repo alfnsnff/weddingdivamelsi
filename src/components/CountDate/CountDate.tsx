@@ -50,7 +50,7 @@ const CountDate: React.FC = () => {
     <section className={styles.countdownSection}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.title}>We're Getting Married</h2>
+          <h2 className={styles.title}>Count the Date</h2>
           <p className={styles.subtitle}>Countdown to our special day</p>
           <div className={styles.ornament}>
             <span className={styles.decorativeElement}>❀</span>

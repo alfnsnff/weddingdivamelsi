@@ -205,6 +205,15 @@
   margin-top: 1rem;
 }
 
+.commentCounts {
+  text-align: right; /* Tambahkan ini agar teks ke tengah */
+  margin: 0.8rem; /* Beri jarak lebih dari daftar komentar */
+  font-size: 1rem;
+  color: var(--color-accent-primary);
+    font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
 .commentMessage {
   font-size: 1rem;
   line-height: 1.6;
@@ -225,6 +234,9 @@
     font-size: 2.2rem;
   }
 
+.subtitle {
+    font-size: 0.9rem;
+  }
   .commentCard {
     padding: 1.5rem;
   }
@@ -242,6 +254,10 @@
   .title,
   .commentsTitle {
     font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
   }
 
   .commentCard {
@@ -268,4 +284,55 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* ... Hapus atau ganti gaya .paginationControls, .paginationButton, .pageIndicator ... */
+
+.loadMoreContainer {
+  text-align: center;
+  margin-top: 2rem;
+  display: flex; /* Gunakan flexbox untuk menata tombol */
+  flex-direction: column; /* Susun tombol secara vertikal */
+  gap: 1rem; /* Beri jarak antar tombol */
+  align-items: center;
+}
+
+.loadMoreButton {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-primary-darkest);
+  background-color: var(--color-background-light);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.loadMoreButton:hover {
+  background-color: var(--color-accent-primary); /* Efek hover yang halus */
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+/* ... (gaya .loadMoreContainer dan .loadMoreButton sudah ada) ... */
+
+
+/* Tombol untuk menampilkan lebih sedikit */
+.showLessButton {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-primary-darkest);
+  background-color: var(--color-background-light);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.showLessButton:hover {
+  background-color: var(--color-accent-primary); /* Efek hover yang halus */
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
 }

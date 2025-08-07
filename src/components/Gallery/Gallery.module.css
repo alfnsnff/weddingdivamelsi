@@ -1,10 +1,11 @@
 .gallerySection {
   padding: 8rem 2rem;
+  padding-bottom: 18rem;
   background: var(--color-background-light);
   margin: 0 auto;
   position: relative;
   z-index: 1;
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .sectionHeader {
@@ -139,7 +140,8 @@
 /* Small Mobile (<= 480px) */
 @media (max-width: 480px) {
   .gallerySection {
-    padding: 5rem 0.8rem;
+    padding: 4rem 0.8rem;
+    padding-bottom: 8rem;
   }
   
   .gallery {
@@ -262,13 +264,13 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 375px;           /* Pastikan ini tinggi asli gambar Anda */
-  background-image: url('/images/flower1.png');
+  height: 350px;           /* Pastikan ini tinggi asli gambar Anda */
+  background-image: url('/images/flower-decoration-2.png');
   background-repeat: repeat-x;
   background-position: bottom left;
   
   /* Ganti 'auto' dengan tinggi eksplisit untuk mencegah peregangan */
-  background-size: auto 375px; /* Lebar otomatis, tinggi sesuai elemen */
+  background-size: auto 350px; /* Lebar otomatis, tinggi sesuai elemen */
 
   z-index: 0;
   pointer-events: none;
@@ -312,7 +314,7 @@
 /* Responsif untuk layar kecil */
 @media (max-width: 768px) {
   .flowerDecoration {
-    width: 70%; /* Ukuran lebih kecil untuk layar sangat kecil */
+    width: 65%; /* Ukuran lebih kecil untuk layar sangat kecil */
   }
 
 
@@ -345,7 +347,8 @@
 /* Responsif untuk layar sangat kecil */
 @media (max-width: 480px) {
   .flowerDecoration {
-    width: 90%; /* Ukuran lebih kecil untuk layar sangat kecil */
+
+    width: 85%; /* Ukuran lebih kecil untuk layar sangat kecil */
   }
 
   .topLeftDecoration {
