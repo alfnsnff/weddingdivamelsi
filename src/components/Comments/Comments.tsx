@@ -3,7 +3,6 @@ import styles from './Comments.module.css';
 import { 
   collection, 
   addDoc, 
-  getDocs, 
   orderBy, 
   query, 
   serverTimestamp,
