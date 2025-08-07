@@ -70,7 +70,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <Header />
+         {isInvitationOpen && <Header />}
 
       {/* 3. Tambahkan elemen audio, pastikan path-nya benar */}
       {/* Ganti 'your-song.mp3' dengan nama file musik Anda */}

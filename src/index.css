@@ -6,7 +6,7 @@
 
 html {
   /* Selalu sediakan ruang untuk scrollbar, mencegah pergeseran layout */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   scroll-behavior: smooth;
 }
 
