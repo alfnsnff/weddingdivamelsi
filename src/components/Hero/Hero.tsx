@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenInvitation, isInvitationOpen }) => {
 
   return (
     <section className={styles.hero}>
-      <div className={styles.overlay}>
+      <div className={`${styles.overlay} ${isInvitationOpen ? styles.stopped : ''}`}>
         <div className={styles.contentContainer}>
           <p className={styles.preTitle}>The Wedding Of</p>
           <h1 className={styles.coupleNames}>
