@@ -1,3 +1,6 @@
+/* =================================================================== */
+/*                      STRUKTUR UTAMA & HEADER                        */
+/* =================================================================== */
 .countdownSection {
   background: var(--color-primary-darkest);
   padding: 4rem 2rem;
@@ -15,6 +18,7 @@
 
 .sectionHeader {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .title {
@@ -59,44 +63,93 @@
   );
 }
 
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+/* =================================================================== */
+/*                      WADAH & KARTU TIMER                            */
+/* =================================================================== */
+.timersContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
 }
 
-/* UBAH BAGIAN INI: Ganti dari Grid ke Flexbox untuk centering */
+.timerInstance {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white-alpha-20);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-white-alpha-20);
+  border-radius: 15px;
+  flex: 1 1 380px;
+  max-width: 420px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--color-background-light);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timerInstance:hover {
+  transform: translateY(-5px);
+  background: var(--color-white-alpha-20);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 10px 30px var(--color-primary-darkest-alpha-30);
+}
+
+.timerTitle {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-primary-light);
+  margin-bottom: 1.5rem;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  position: relative;
+}
+
+.timerTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+/* =================================================================== */
+/*                      KONTEN DI DALAM KARTU TIMER                    */
+/* =================================================================== */
 .countdown {
-  display: flex; /* 1. Ganti menjadi flex */
-  justify-content: center; /* 2. Tambahkan ini untuk menengahkan secara horizontal */
-  align-items: center; /* Menengahkan secara vertikal */
-  flex-wrap: nowrap; /* 1. PAKSA agar kotak angka tidak turun baris */
-  gap: 0.75rem;      /* 2. Kurangi jarak antar kotak angka */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
   margin: 1rem 0;
   width: 100%;
 }
 
 .timeUnit {
   position: relative;
-  flex: 1; /* 1. Tambahkan ini agar setiap unit tumbuh secara merata */
-  min-width: 65px; /* 3. Kurangi lebar minimum setiap kotak */
-  text-align: center; /* 3. Pastikan konten di dalamnya juga center */
+  flex: 1;
+  min-width: 65px;
+  text-align: center;
 }
 
 .timeCard {
   background: var(--color-background-light);
   border-radius: 10px;
-  padding: 1.5rem 0.5rem; /* 4. Kurangi padding di dalam kotak */
+  padding: 1.5rem 0.5rem;
   box-shadow: inset 0 1px 0 var(--color-white-alpha-90);
   border: 2px solid var(--color-primary-medium-alpha-20);
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 0.8s ease;
+  animation-fill-mode: both;
 }
 
 .timeCard::before {
@@ -125,8 +178,14 @@
   border-color: var(--color-accent-primary);
 }
 
+/* Animasi delay untuk setiap kotak angka */
+.timeCard:nth-child(1) { animation-delay: 0.1s; }
+.timeCard:nth-child(2) { animation-delay: 0.2s; }
+.timeCard:nth-child(3) { animation-delay: 0.3s; }
+.timeCard:nth-child(4) { animation-delay: 0.4s; }
+
 .timeValue {
-  font-size: 2.5rem; /* 5. Perkecil ukuran angka agar muat */
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-text-primary);
   font-family: "Playfair Display", serif;
@@ -155,34 +214,12 @@
   font-style: italic;
 }
 
-.weddingDate {
-  margin: 4rem 0;
-  padding: 2rem;
-  background: var(--color-white-alpha-60);
-  border-radius: 20px;
-  border: 1px solid var(--color-primary-medium-alpha-20);
-  backdrop-filter: blur(10px);
-}
-
-.dateText {
-  font-size: 1.2rem;
-  color: var(--color-text-secondary);
-  font-family: "Playfair Display", serif;
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-.dateValue {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--color-accent-primary);
-}
-
+/* =================================================================== */
+/*                           PESAN AYAT                                */
+/* =================================================================== */
 .message {
   margin-top: 2rem;
-  /* padding: 2rem; */
   text-align: center;
-  border: #d4af37;
 }
 
 .messageText {
@@ -203,64 +240,42 @@
   top: -10px;
 }
 
-.messageText::before {
-  left: -20px;
-}
-
-.messageText::after {
-  right: -20px;
-}
-
+.messageText::before { left: -20px; }
+.messageText::after { right: -20px; }
 
 /* =================================================================== */
-/*                        DESAIN RESPONSIVE                            */
+/*                             ANIMASI                                 */
 /* =================================================================== */
-
-/* Untuk layar tablet besar & laptop kecil (di bawah 1250px) */
-@media (max-width: 1250px) {
-  .timersContainer {
-    /* Izinkan 2 kartu per baris jika memungkinkan */
-    justify-content: center;
-  }
-  .timerInstance {
-    flex-basis: 340px; /* Sedikit perkecil basis kartu */
-  }
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Untuk layar tablet (di bawah 992px) */
-@media (max-width: 992px) {
-  .timersContainer {
-    flex-direction: column; /* PAKSA kartu menjadi 1 kolom vertikal */
-    align-items: center; /* Tengahkan kartu di tengah */
-    gap: 2.5rem;
-  }
-  .timerInstance {
-    max-width: 420px; /* Izinkan kartu melebar sedikit di mode vertikal */
-    width: 100%;
-  }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Untuk layar tablet kecil & ponsel besar (di bawah 768px) */
 @media (max-width: 768px) {
   .countdownSection {
-    padding: 3rem 1.5rem; /* Kurangi padding seksi */
+    padding: 3rem 1.5rem;
   }
-
   .title {
-    font-size: 2.8rem; /* Perkecil font judul utama */
+    font-size: 2.8rem;
   }
-
   .timerTitle {
-    font-size: 1.6rem; /* Perkecil font judul kartu */
+    font-size: 1.6rem;
     margin-bottom: 1rem;
   }
-
   .timeValue {
-    font-size: 2.2rem; /* Perkecil font angka */
+    font-size: 2.2rem;
   }
-
   .labelPrimary {
     font-size: 0.9rem;
+  }
+    .messageText {
+    font-size: 1.2rem;
   }
 }
 
@@ -269,144 +284,26 @@
   .countdownSection {
     padding: 3rem 1rem;
   }
-
   .title {
     font-size: 2.2rem;
   }
-
   .timerInstance {
-    padding: 1.5rem; /* Kurangi padding di dalam kartu utama */
+    padding: 1.5rem;
   }
-
-  /* UBAH LAYOUT DI DALAM KARTU MENJADI 2x2 */
   .countdown {
-    flex-wrap: wrap; /* Izinkan kotak angka turun baris */
+    flex-wrap: wrap;
     gap: 1rem;
   }
-
   .timeUnit {
-    flex-basis: 40%; /* Atur agar 2 kotak muat per baris */
+    flex-basis: 40%;
   }
-
   .timeValue {
     font-size: 2rem;
   }
-
   .timerTitle {
     font-size: 1.4rem;
   }
-}
-
-.timeCard {
-  animation: fadeInUp 0.8s ease;
-  animation-fill-mode: both;
-}
-
-.timeCard:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.timeCard:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.timeCard:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.timeCard:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* UBAH BAGIAN INI untuk tata letak horizontal */
-.timersContainer {
-  display: flex;
-  flex-direction: row; /* 1. Ubah menjadi baris (horizontal) */
-  justify-content: center; /* 2. Tengahkan grup timer di halaman */
-  align-items: flex-start; /* 3. Ratakan dari atas (jika tingginya beda) */
-  flex-wrap: wrap; /* 4. Izinkan wrap jika layar terlalu sempit */
-  gap: 2rem;
-  width: 100%;
-  /* margin-bottom: 1rem; */
-}
-
-/* =================================================================== */
-/* PERUBAHAN UTAMA DI SINI: Ganti blok ini agar sama dengan .eventCard */
-/* =================================================================== */
-
-.timerInstance {
-  display: flex;
-  flex-direction: column;
-  background: var(--color-white-alpha-20); /* Diambil dari .eventCard */
-  backdrop-filter: blur(10px); /* Diambil dari .eventCard */
-  border: 1px solid var(--color-white-alpha-20); /* Diambil dari .eventCard */
-  border-radius: 15px; /* Diambil dari .eventCard */
-  /* HAPUS: width: 100%; */ /* Tidak diperlukan lagi untuk layout baris */
-  flex: 1 1 380px; /* 6. PERBESAR lebar dasar kartu agar sama dengan eventCard */
-  max-width: 420px; /* Beri batas atas agar tidak terlalu lebar */
-  padding: 2rem 1.5rem; /* Diambil dari .eventCard */
-  text-align: center;
-  color: var(--color-background-light); /* Diambil dari .eventCard */
-  position: relative;
-  transition: all 0.3s ease; /* Diambil dari .eventCard */
-}
-
-.timerInstance:hover {
-  transform: translateY(-5px); /* Diambil dari .eventCard:hover */
-  background: var(--color-white-alpha-20); /* Diambil dari .eventCard:hover */
-  border-color: var(--color-accent-primary); /* Diambil dari .eventCard:hover */
-  box-shadow: 0 10px 30px var(--color-primary-darkest-alpha-30); /* Diambil dari .eventCard:hover */
-}
-
-/* =================================================================== */
-/*                        AKHIR PERUBAHAN UTAMA                        */
-/* =================================================================== */
-
-
-.timerTitle {
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--color-primary-light); /* Gunakan warna aksen */
-  margin-bottom: 1.5rem;
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  position: relative;
-}
-
-.timerTitle::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-/* GAYA BARU: Untuk pemisah */
-.timerSeparator {
-  font-size: 2.5rem;
-  color: var(--color-accent-primary);
-  line-height: 1;
-  opacity: 0.7;
-}
-
-/* Hapus media query yang tidak perlu karena kita ingin selalu atas-bawah */
-/* @media (min-width: 768px) { ... } */
-
-/* Tambahkan ini di dalam media query yang sudah ada untuk responsivitas */
-@media (max-width: 900px) { /* Gunakan breakpoint yang lebih besar agar tidak terlalu sempit */
-  .timersContainer {
-    flex-direction: column; /* Kembalikan ke vertikal di layar kecil */
-    align-items: center; /* Tengahkan kembali secara vertikal */
+  .messageText {
+    font-size: 1rem;
   }
 }

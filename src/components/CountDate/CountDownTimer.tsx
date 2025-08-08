@@ -54,7 +54,7 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
 
     return (
         <div className={styles.timerInstance}>
-            <h3 className={styles.timerTitle}>{title}</h3>
+            <h2 className={styles.timerTitle}>{title}</h2>
             <div className={styles.countdown}>
                 {timeUnits.map((unit, index) => (
                     <div key={index} className={styles.timeUnit}>
