@@ -9,12 +9,12 @@ interface TimeLeft {
 }
 
 // Definisikan props yang akan diterima komponen ini
-interface CountdownTimerProps {
+interface CountDownTimerProps {
     targetDate: string; // Tanggal acara dalam format string
     title: string;      // Judul acara, misal "Akad Nikah"
 }
 
-const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate, title }) => {
+const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) => {
     const [timeLeft, setTimeLeft] = useState<TimeLeft>({
         days: 0,
         hours: 0,
@@ -34,10 +34,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate, title }) =>
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                
-                // UBAH BARIS INI: Gunakan logika yang sama seperti unit lainnya
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
                 setTimeLeft({ days, hours, minutes, seconds });
             } else {
                 setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -77,4 +74,4 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate, title }) =>
     );
 };
 
-export default CountdownTimer;
+export default CountDownTimer;

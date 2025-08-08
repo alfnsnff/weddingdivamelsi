@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CountDate.module.css';
-import CountdownTimer from './CountdownTimer'; // Impor komponen baru
+import CountDownTimer from './CountDownTimer'
 
 const CountDate: React.FC = () => {
   return (
@@ -18,19 +18,19 @@ const CountDate: React.FC = () => {
 
         <div className={styles.timersContainer}>
           {/* Timer Pertama: Akad Nikah */}
-          <CountdownTimer
+          <CountDownTimer
             title="Akad Nikah"
             targetDate="2025-08-10T09:00:00"
           />
 
           {/* Timer Kedua: Resepsi Mempelai Wanita */}
-          <CountdownTimer
+          <CountDownTimer
             title="Resepsi Mempelai Wanita"
             targetDate="2025-08-10T18:30:00"
           />
 
           {/* TAMBAHKAN INI: Timer Ketiga untuk Resepsi kedua */}
-          <CountdownTimer
+          <CountDownTimer
             title="Resepsi Mempelai Pria"
             targetDate="2025-08-17T18:30:00"
           />
