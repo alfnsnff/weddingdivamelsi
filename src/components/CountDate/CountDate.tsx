@@ -18,10 +18,10 @@ const CountDate: React.FC = () => {
 
         <div className={styles.timersContainer}>
           {/* Timer Pertama: Akad Nikah */}
-          <CountDownTimer
+          {/* <CountDownTimer
             title="Akad Nikah"
             targetDate="2025-08-10T09:00:00"
-          />
+          /> */}
 
           {/* Timer Kedua: Resepsi Mempelai Wanita */}
           <CountDownTimer

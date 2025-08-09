@@ -5,7 +5,7 @@ interface TimeLeft {
     days: number;
     hours: number;
     minutes: number;
-    seconds: number;
+    // seconds: number;
 }
 
 // Definisikan props yang akan diterima komponen ini
@@ -19,7 +19,7 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 0
+        // seconds: 0
     });
 
     // Gunakan prop 'targetDate' untuk perhitungan
@@ -35,9 +35,13 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                setTimeLeft({ days, hours, minutes, seconds });
+                setTimeLeft({ days, hours, minutes, 
+                    // seconds
+                 });
             } else {
-                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, 
+                    // seconds: 0 
+                });
                 clearInterval(timer);
             }
         }, 1000);
@@ -49,7 +53,7 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
     { value: timeLeft.days, label: 'Hari', unit: 'Days' },
     { value: timeLeft.hours, label: 'Jam', unit: 'Hours' },
     { value: timeLeft.minutes, label: 'Menit', unit: 'Minutes' },
-    { value: timeLeft.seconds, label: 'Detik', unit: 'Seconds' }
+    // { value: timeLeft.seconds, label: 'Detik', unit: 'Seconds' }
     ];
 
     return (

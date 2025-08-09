@@ -1,11 +1,19 @@
+/* =================================================================== */
+/*                      STRUKTUR UTAMA & HEADER                        */
+/* =================================================================== */
 .storySection {
   padding: 8rem 6rem;
   background: linear-gradient(135deg, var(--color-background-gradient-start) 0%, var(--color-background-gradient-end) 100%);
   color: var(--color-text-primary);
   margin: 0 auto;
   position: relative;
+  overflow: hidden; /* Penting untuk menjaga dekorasi di dalam batas */
   z-index: 1;
-    overflow: hidden;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 2; /* Pastikan konten utama di atas dekorasi */
 }
 
 .sectionHeader {
@@ -49,31 +57,29 @@
   background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
 }
 
-@keyframes sparkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-
-/* Content Container - Flexbox Layout */
+/* =================================================================== */
+/*                         KONTEN CERITA                               */
+/* =================================================================== */
 .contentContainer {
   display: flex;
   align-items: center;
   gap: 4rem;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 25px;
+  margin: 0 auto 25px;
+  animation: fadeInUp 0.8s ease;
 }
 
-/* Reverse untuk container kedua */
+.contentContainer:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
 .contentContainer:nth-of-type(3) {
   flex-direction: row-reverse;
+  animation-delay: 0.4s;
 }
 
-/* Image Styling */
 .imageContainer {
-  flex: 0 0 350px; /* Fixed width, no grow/shrink */
+  flex: 0 0 350px;
   height: 500px;
   position: relative;
   overflow: hidden;
@@ -100,10 +106,9 @@
   transform: scale(1.05);
 }
 
-/* Text Containers */
 .textContainerfirst,
 .textContainersecond {
-  flex: 1; /* Take remaining space */
+  flex: 1;
   padding: 1rem;
 }
 
@@ -115,7 +120,6 @@
   text-align: right;
 }
 
-/* Title Styling */
 .storyTitle {
   font-size: 2.5rem;
   font-weight: 400;
@@ -127,7 +131,6 @@
   line-height: 1.2;
 }
 
-/* Different underline positions */
 .textContainerfirst .storyTitle::after {
   content: '';
   position: absolute;
@@ -150,7 +153,6 @@
   border-radius: 1px;
 }
 
-/* Text Content */
 .storyText {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -160,8 +162,89 @@
   margin: 0;
 }
 
-/* Responsive Design */
+/* =================================================================== */
+/*                         DEKORASI BUNGA                              */
+/* =================================================================== */
+.flowerDecoration {
+  position: absolute;
+  width: 50%;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.topLeftDecoration {
+  top: -25px;
+  left: -200px;
+}
+
+.topRightDecoration {
+  top: -25px;
+  right: -200px;
+  transform: scaleX(-1);
+}
+
+.bottomLeftDecoration {
+  bottom: -25px;
+  left: -200px;
+  transform: rotate(180deg);
+}
+
+.bottomRightDecoration {
+  bottom: -25px;
+  right: -200px;
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* =================================================================== */
+/*                             ANIMASI                                 */
+/* =================================================================== */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================================================== */
+/*                        DESAIN RESPONSIVE                            */
+/* =================================================================== */
+@media (max-width: 1024px) {
+  .topLeftDecoration,
+  .bottomLeftDecoration {
+    left: -150px;
+  }
+
+  .topRightDecoration,
+  .bottomRightDecoration {
+    right: -150px;
+  }
+
+  .topLeftDecoration,
+  .topRightDecoration {
+    top: -10px;
+  }
+
+  .bottomLeftDecoration,
+  .bottomRightDecoration {
+    bottom: -10px;
+  }
+}
+
 @media (max-width: 768px) {
+  .storySection {
+    padding: 10rem 1.5rem;
+  }
+
   .contentContainer,
   .contentContainer:nth-of-type(3) {
     flex-direction: column;
@@ -189,12 +272,12 @@
     background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent) !important;
   }
 
-  .storySection {
-    padding: 10rem 1.5rem;
+  .title {
+    font-size: 2.5rem;
   }
 
   .title {
-    font-size: 2.2rem;
+    font-size: 1.1rem;
   }
 
   .storyTitle {
@@ -204,28 +287,32 @@
   .storyText {
     font-size: 1rem;
   }
+
+  .flowerDecoration {
+    width: 70%;
+  }
 }
 
 @media (max-width: 480px) {
+  .storySection {
+    padding: 10rem 1rem;
+  }
+
+  .contentContainer {
+    gap: 1rem;
+  }
+
   .imageContainer {
     width: 250px;
     height: 350px;
   }
 
-  .storySection {
-    padding: 10rem 1rem;
-  }
-
   .title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .storyTitle {
-    font-size: 1.6rem;
-  }
-
-  .contentContainer {
-    gap: 1rem;
+    font-size: 1rem;
   }
 
   .decorativeLine {
@@ -235,165 +322,8 @@
   .decorativeElement {
     font-size: 1.5rem;
   }
-}
-
-/* Animation effects */
-.contentContainer {
-  animation: fadeInUp 0.8s ease;
-}
-
-.contentContainer:nth-of-type(2) {
-  animation-delay: 0.2s;
-}
-
-.contentContainer:nth-of-type(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Elegant decorative background
-.storySection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 25% 25%, var(--color-accent-alpha-30) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, var(--color-accent-alpha-30) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
-} */
-
-/* Dekorasi bunga */
-.flowerDecoration {
-  position: absolute;
-  width: 50%; /* Ukuran default */
-  height: auto;
-  z-index: 0; /* Pastikan berada di belakang konten */
-  pointer-events: none; /* Agar tidak mengganggu interaksi mouse */
-}
-
-.topLeftDecoration {
-  top: -25px; /* Posisi di atas */
-  left: -200px; /* Posisi di kiri */
-}
-
-.topRightDecoration {
-  top: -25px; /* Posisi di atas */
-  right: -200px; /* Posisi di kanan */
-  transform: scaleX(-1); /* Flip secara horizontal */
-}
-
-.bottomLeftDecoration {
-  bottom: -25px; /* Posisi di bawah */
-  left: -200px; /* Posisi di kiri */
-  transform: rotate(180deg); /* Putar gambar untuk bagian bawah */
-}
-
-.bottomRightDecoration {
-  bottom: -25px; /* Posisi di bawah */
-  right: -200px; /* Posisi di kanan */
-  transform: scaleX(-1) rotate(180deg); /* Putar gambar untuk bagian bawah */
-}
-
-/* Responsif untuk layar sangat kecil */
-@media (max-width: 1024px) {
-
-
-  .topLeftDecoration {
-    top: -10px; /* Posisi lebih dekat ke tepi */
-    left: -150px;
-  }
-
-  .topRightDecoration {
-    top: -10px;
-    right: -150px;
-  }
-
-  .bottomLeftDecoration {
-    bottom: -10px;
-    left: -150px;
-  }
-
-  .bottomRightDecoration {
-    bottom: -10px;
-    right: -150px;
-  }
-}
-
-/* Responsif untuk layar kecil */
-@media (max-width: 768px) {
 
   .flowerDecoration {
-    width: 70%; /* Ukuran lebih kecil untuk layar sangat kecil */
+    width: 90%;
   }
-
-
-  .topLeftDecoration {
-    top: -10px; /* Posisi lebih dekat ke tepi */
-    left: -150px;
-  }
-
-  .topRightDecoration {
-    top: -10px;
-    right: -150px;
-  }
-
-  .bottomLeftDecoration {
-    bottom: -10px;
-    left: -150px;
-  }
-
-  .bottomRightDecoration {
-    bottom: -10px;
-    right: -150px;
-  }
-}
-
-/* Responsif untuk layar sangat kecil */
-@media (max-width: 480px) {
-  .flowerDecoration {
-    width: 90%; /* Ukuran lebih kecil untuk layar sangat kecil */
-  }
-
-  .topLeftDecoration {
-    top: -10px; /* Posisi lebih dekat ke tepi */
-    left: -150px;
-  }
-
-  .topRightDecoration {
-    top: -10px;
-    right: -150px;
-  }
-
-  .bottomLeftDecoration {
-    bottom: -10px;
-    left: -150px;
-  }
-
-  .bottomRightDecoration {
-    bottom: -10px;
-    right: -150px;
-  }
-}
-
-/* Pastikan konten utama berada di atas dekorasi */
-
-
-/* Wrapper untuk konten utama */
-.contentWrapper {
-  position: relative;
-  z-index: 2; /* Pastikan konten utama berada di atas dekorasi bunga */
 }

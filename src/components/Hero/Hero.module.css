@@ -1,3 +1,6 @@
+/* =================================================================== */
+/*                      STRUKTUR UTAMA & OVERLAY                       */
+/* =================================================================== */
 .hero {
   height: 100vh;
   background-image: linear-gradient(rgba(45, 51, 107, 0.4), rgba(45, 51, 107, 0.4)), 
@@ -15,24 +18,31 @@
 
 .overlay {
   padding: 3rem 2.5rem;
-  /* max-width: 1000px; */
   width: 90%;
+  transition: transform 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.overlay:hover {
+  transform: translateY(-5px);
 }
 
 .contentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 1rem; */
 }
 
+/* =================================================================== */
+/*                         KONTEN TEKS & UNDANGAN                      */
+/* =================================================================== */
 .preTitle {
   font-size: 1.5rem;
   font-weight: 300;
   color: #ffffff;
   letter-spacing: 1px;
   font-family: 'Playfair Display', serif;
-    line-height: 4; /* Atur jarak antar baris */
+  line-height: 4;
 }
 
 .coupleNames {
@@ -40,20 +50,9 @@
   font-weight: 400;
   font-family: 'Great Vibes', cursive;
   color: #ffffff;
-  display: flex; /* Menjadikan container sebagai flexbox */
-  justify-content: center; /* Menjaga agar teks tetap di tengah */
-  gap: 1.5rem; /* Menambahkan jarak antar setiap elemen (kata) */
-}
-
-@keyframes shimmer {
-  0%, 100% { 
-    background-position: 0% 50%; 
-    filter: brightness(1);
-  }
-  50% { 
-    background-position: 100% 50%; 
-    filter: brightness(1.2);
-  }
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .weddingDate {
@@ -67,10 +66,6 @@
 .invitation {
   margin-top: 2rem;
   padding: 1.5rem 2rem;
-  /* background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px); */
 }
 
 .kepada {
@@ -97,8 +92,10 @@
   font-style: italic;
 }
 
+/* =================================================================== */
+/*                               TOMBOL                              */
+/* =================================================================== */
 .openButton {
-  /* ... (gaya tombol Anda yang sudah ada seperti background, color, padding, dll.) ... */
   padding: 1rem 2.5rem;
   font-size: 1rem;
   font-weight: bold;
@@ -109,27 +106,34 @@
   cursor: pointer;
   margin-top: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
-  /* SOLUSI 1: Tambahkan transisi untuk opacity dan transform */
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* SOLUSI 2: Kelas baru untuk menyembunyikan tombol */
-.hidden {
-  opacity: 0;
-  transform: translateY(20px); /* Efek bergerak ke bawah saat menghilang */
-  pointer-events: none; /* Membuat tombol tidak bisa diklik */
+  transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .openButton:hover {
-  background-color: #fff;
+  background-color: #f0f0f0;
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive Design */
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* =================================================================== */
+/*                             ANIMASI                                 */
+/* =================================================================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* =================================================================== */
+/*                        DESAIN RESPONSIVE                            */
+/* =================================================================== */
 @media (max-width: 768px) {
   .hero {
     padding: 2rem 0rem;
@@ -165,23 +169,19 @@
   .overlay {
     padding: 2rem 1.5rem;
     max-width: 350px;
-    
   }
 
-    .preTitle {
+  .preTitle {
     font-size: 0.9rem;
-        line-height: 5; /* Atur jarak antar baris */
+    line-height: 5;
   }
   
   .coupleNames {
     font-size: 4rem;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 0.8; /* Atur jarak antar baris */
+    line-height: 0.8;
   }
-  
-
   
   .weddingDate {
     font-size: 1.3rem;
@@ -199,21 +199,4 @@
   .location {
     font-size: 0.9rem;
   }
-}
-
-/* Hover effect untuk interaktivitas */
-.overlay:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-  /* box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4); */
-}
-
-/* Floating animation */
-.overlay {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
 }

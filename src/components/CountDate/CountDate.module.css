@@ -84,7 +84,7 @@
   border: 1px solid var(--color-white-alpha-20);
   border-radius: 15px;
   flex: 1 1 380px;
-  max-width: 420px;
+  max-width: 400px;
   padding: 2rem 1.5rem;
   text-align: center;
   color: var(--color-background-light);
@@ -130,7 +130,7 @@
   flex-wrap: nowrap;
   gap: 0.75rem;
   margin: 1rem 0;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .timeUnit {
@@ -215,7 +215,7 @@
 }
 
 /* =================================================================== */
-/*                           PESAN AYAT                                */
+/*                           PESAN                                     */
 /* =================================================================== */
 .message {
   margin-top: 2rem;
@@ -259,10 +259,15 @@
 /* Untuk layar tablet kecil & ponsel besar (di bawah 768px) */
 @media (max-width: 768px) {
   .countdownSection {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
   }
+
   .title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
   }
   .timerTitle {
     font-size: 1.6rem;
@@ -282,11 +287,17 @@
 /* Untuk layar ponsel kecil (di bawah 480px) */
 @media (max-width: 480px) {
   .countdownSection {
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
+
   .title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
   .timerInstance {
     padding: 1.5rem;
   }

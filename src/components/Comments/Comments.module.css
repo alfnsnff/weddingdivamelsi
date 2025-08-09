@@ -1,3 +1,6 @@
+/* =================================================================== */
+/*                      STRUKTUR UTAMA & HEADER                        */
+/* =================================================================== */
 .commentsSection {
   background: var(--color-primary-darkest);
   padding: 5rem 2rem;
@@ -50,7 +53,9 @@
   background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
 }
 
-/* Form Styles */
+/* =================================================================== */
+/*                         FORM KOMENTAR                               */
+/* =================================================================== */
 .formContainer {
   background: var(--color-background-light);
   border-radius: 15px;
@@ -118,12 +123,10 @@
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
-  /* box-shadow: 0 5px 15px var(--color-accent-alpha-30); */
 }
 
 .submitButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  /* box-shadow: 0 8px 25px var(--color-accent-alpha-30); */
 }
 
 .submitButton:disabled {
@@ -132,9 +135,11 @@
   transform: none;
 }
 
-/* Comments List Styles */
+/* =================================================================== */
+/*                         DAFTAR KOMENTAR                             */
+/* =================================================================== */
 .commentsContainer {
-    text-align: center;
+  text-align: center;
 }
 
 .commentsTitle {
@@ -144,6 +149,15 @@
   font-family: 'Great Vibes', cursive;
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+}
+
+.commentCounts {
+  text-align: right;
+  margin: 0.8rem;
+  font-size: 1rem;
+  color: var(--color-accent-primary);
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
 }
 
 .emptyState {
@@ -166,6 +180,7 @@
   box-shadow: 0 5px 20px var(--color-primary-darkest-alpha-20);
   border: 1px solid var(--color-primary-medium-alpha-20);
   transition: all 0.3s ease;
+  animation: slideInUp 0.5s ease;
 }
 
 .commentCard:hover {
@@ -194,7 +209,6 @@
   color: var(--color-text-primary);
 }
 
-
 .commentTime {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
@@ -205,15 +219,6 @@
   margin-top: 1rem;
 }
 
-.commentCounts {
-  text-align: right; /* Tambahkan ini agar teks ke tengah */
-  margin: 0.8rem; /* Beri jarak lebih dari daftar komentar */
-  font-size: 1rem;
-  color: var(--color-accent-primary);
-    font-style: italic;
-  font-family: 'Playfair Display', serif;
-}
-
 .commentMessage {
   font-size: 1rem;
   line-height: 1.6;
@@ -222,102 +227,19 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .formContainer {
-    padding: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .title,
-  .commentsTitle {
-    font-size: 2.2rem;
-  }
-
-.subtitle {
-    font-size: 0.9rem;
-  }
-  .commentCard {
-    padding: 1.5rem;
-  }
-
-  .commentsSection {
-    padding: 3rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .formContainer {
-    padding: 1.5rem;
-  }
-
-  .title,
-  .commentsTitle {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 0.9rem;
-  }
-
-  .commentCard {
-    padding: 1rem;
-  }
-
-  .commentHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-  }
-}
-
-.commentCard {
-  animation: slideInUp 0.5s ease;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ... Hapus atau ganti gaya .paginationControls, .paginationButton, .pageIndicator ... */
-
+/* =================================================================== */
+/*                      TOMBOL MUAT LEBIH BANYAK                       */
+/* =================================================================== */
 .loadMoreContainer {
   text-align: center;
   margin-top: 2rem;
-  display: flex; /* Gunakan flexbox untuk menata tombol */
-  flex-direction: column; /* Susun tombol secara vertikal */
-  gap: 1rem; /* Beri jarak antar tombol */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   align-items: center;
 }
 
-.loadMoreButton {
-  padding: 0.6rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-primary-darkest);
-  background-color: var(--color-background-light);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.loadMoreButton:hover {
-  background-color: var(--color-accent-primary); /* Efek hover yang halus */
-  color: var(--color-text-primary);
-  transform: translateY(-2px);
-}
-/* ... (gaya .loadMoreContainer dan .loadMoreButton sudah ada) ... */
-
-
-/* Tombol untuk menampilkan lebih sedikit */
+.loadMoreButton,
 .showLessButton {
   padding: 0.6rem 1.5rem;
   font-size: 0.9rem;
@@ -331,8 +253,72 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.loadMoreButton:hover,
 .showLessButton:hover {
-  background-color: var(--color-accent-primary); /* Efek hover yang halus */
+  background-color: var(--color-accent-primary);
   color: var(--color-text-primary);
   transform: translateY(-2px);
+}
+
+/* =================================================================== */
+/*                             ANIMASI                                 */
+/* =================================================================== */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================================================== */
+/*                        DESAIN RESPONSIVE                            */
+/* =================================================================== */
+@media (max-width: 768px) {
+  .commentsSection {
+    padding: 3rem 1rem;
+  }
+  .formContainer {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  .title,
+  .commentsTitle {
+    font-size: 2.2rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  .commentCard {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 1.5rem;
+  }
+  .title,
+  .commentsTitle {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  .commentCard {
+    padding: 1rem;
+  }
+  .commentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
 }
