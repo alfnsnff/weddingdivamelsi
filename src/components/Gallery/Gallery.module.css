@@ -28,6 +28,8 @@
   font-family: 'Great Vibes', cursive;
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .subtitle {
@@ -36,6 +38,8 @@
   font-style: italic;
   font-family: 'Playfair Display', serif;
   margin-bottom: 1rem;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .ornament {
@@ -44,6 +48,8 @@
   justify-content: center;
   gap: 1rem;
   margin: 1.5rem 0;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .decorativeElement {
@@ -80,7 +86,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 15px var(--color-primary-darkest-alpha-20);
   border: 1px solid var(--color-border);
-  animation: fadeInUp 0.8s ease both;
+  /* Hapus animasi otomatis dan sembunyikan elemen */
+  opacity: 0;
 }
 
 .galleryItem:hover {
@@ -112,19 +119,10 @@
 .wide { grid-column: span 2; }
 .tall { grid-row: span 2; }
 
-/* Animasi delay untuk setiap item */
-.galleryItem:nth-child(1) { animation-delay: 0.1s; }
-.galleryItem:nth-child(2) { animation-delay: 0.15s; }
-.galleryItem:nth-child(3) { animation-delay: 0.2s; }
-.galleryItem:nth-child(4) { animation-delay: 0.25s; }
-.galleryItem:nth-child(5) { animation-delay: 0.3s; }
-.galleryItem:nth-child(6) { animation-delay: 0.35s; }
-.galleryItem:nth-child(7) { animation-delay: 0.4s; }
-.galleryItem:nth-child(8) { animation-delay: 0.45s; }
-.galleryItem:nth-child(9) { animation-delay: 0.5s; }
-.galleryItem:nth-child(10) { animation-delay: 0.55s; }
-.galleryItem:nth-child(11) { animation-delay: 0.6s; }
-.galleryItem:nth-child(12) { animation-delay: 0.65s; }
+/* HAPUS SEMUA ATURAN ANIMATION-DELAY DI BAWAH INI */
+/* .galleryItem:nth-child(1) { animation-delay: 0.1s; } */
+/* ...dan seterusnya... */
+
 
 /* =================================================================== */
 /*                         DEKORASI BUNGA                              */
@@ -135,6 +133,8 @@
   height: auto;
   z-index: 0;
   pointer-events: none;
+  /* Sembunyikan elemen pada awalnya */
+  opacity: 0;
 }
 
 .topLeftDecoration {
@@ -172,6 +172,8 @@
   background-size: auto 350px;
   z-index: 0;
   pointer-events: none;
+  /* Sembunyikan elemen pada awalnya */
+  opacity: 0;
 }
 
 /* =================================================================== */
@@ -191,6 +193,59 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Keyframe untuk animasi bunga sudut */
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Keyframe untuk animasi bunga bawah */
+@keyframes growUp {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Kelas pemicu untuk item galeri */
+.animateItem {
+  opacity: 1;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* PERBAIKAN: Tambahkan aturan animasi untuk header */
+.sectionHeader.animateItem .title,
+.sectionHeader.animateItem .subtitle,
+.sectionHeader.animateItem .ornament {
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* PERBAIKAN: Tambahkan delay untuk header */
+.sectionHeader.animateItem .title { animation-delay: 0.1s; }
+.sectionHeader.animateItem .subtitle { animation-delay: 0.3s; }
+.sectionHeader.animateItem .ornament { animation-delay: 0.5s; }
+
+
+/* Kelas pemicu untuk animasi BUNGA SUDUT */
+.animateFlowerCorner {
+  animation: fadeInGrow 1s ease-out both;
+}
+
+/* Kelas pemicu untuk animasi BUNGA BAWAH */
+.animateFlowerBottom {
+  animation: growUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 /* =================================================================== */

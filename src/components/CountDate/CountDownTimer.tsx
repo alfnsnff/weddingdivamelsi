@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import styles from './CountDate.module.css';
 
 interface TimeLeft {
     days: number;
     hours: number;
     minutes: number;
-    // seconds: number;
 }
 
-// Definisikan props yang akan diterima komponen ini
 interface CountDownTimerProps {
-    targetDate: string; // Tanggal acara dalam format string
-    title: string;      // Judul acara, misal "Akad Nikah"
+    targetDate: string;
+    title: string;
 }
 
-const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) => {
+// Gunakan forwardRef untuk menerima ref dari parent
+const CountDownTimer = forwardRef<HTMLDivElement, CountDownTimerProps>(({ targetDate, title }, ref) => {
     const [timeLeft, setTimeLeft] = useState<TimeLeft>({
         days: 0,
         hours: 0,
         minutes: 0,
-        // seconds: 0
     });
 
-    // Gunakan prop 'targetDate' untuk perhitungan
     const eventDate = new Date(targetDate).getTime();
 
     useEffect(() => {
@@ -34,14 +31,9 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                setTimeLeft({ days, hours, minutes, 
-                    // seconds
-                 });
+                setTimeLeft({ days, hours, minutes });
             } else {
-                setTimeLeft({ days: 0, hours: 0, minutes: 0, 
-                    // seconds: 0 
-                });
+                setTimeLeft({ days: 0, hours: 0, minutes: 0 });
                 clearInterval(timer);
             }
         }, 1000);
@@ -50,14 +42,14 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
     }, [eventDate]);
 
     const timeUnits = [
-    { value: timeLeft.days, label: 'Hari', unit: 'Days' },
-    { value: timeLeft.hours, label: 'Jam', unit: 'Hours' },
-    { value: timeLeft.minutes, label: 'Menit', unit: 'Minutes' },
-    // { value: timeLeft.seconds, label: 'Detik', unit: 'Seconds' }
+        { value: timeLeft.days, label: 'Hari', unit: 'Days' },
+        { value: timeLeft.hours, label: 'Jam', unit: 'Hours' },
+        { value: timeLeft.minutes, label: 'Menit', unit: 'Minutes' },
     ];
 
     return (
-        <div className={styles.timerInstance}>
+        // Terapkan ref yang diterima ke elemen div terluar
+        <div className={styles.timerInstance} ref={ref}>
             <h2 className={styles.timerTitle}>{title}</h2>
             <div className={styles.countdown}>
                 {timeUnits.map((unit, index) => (
@@ -76,6 +68,6 @@ const CountDownTimer: React.FC<CountDownTimerProps> = ({ targetDate, title }) =>
             </div>
         </div>
     );
-};
+});
 
 export default CountDownTimer;

@@ -28,6 +28,8 @@
   font-family: "Great Vibes", cursive;
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px var(--color-primary-light-alpha-30);
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .subtitle {
@@ -36,6 +38,8 @@
   font-style: italic;
   font-family: "Playfair Display", serif;
   margin-bottom: 1rem;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .ornament {
@@ -44,6 +48,8 @@
   justify-content: center;
   gap: 1rem;
   margin: 1.5rem 0;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .decorativeElement {
@@ -90,6 +96,10 @@
   color: var(--color-background-light);
   position: relative;
   transition: all 0.3s ease;
+  /* Sembunyikan elemen pada awalnya */
+  opacity: 0;
+  /* PERBAIKAN: Gunakan variabel untuk delay */
+  animation-delay: var(--animation-delay, 0s);
 }
 
 .timerInstance:hover {
@@ -229,6 +239,8 @@
   font-style: italic;
   position: relative;
   display: inline-block;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .messageText::before,
@@ -254,6 +266,33 @@
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Kelas ini akan ditambahkan oleh JavaScript untuk memicu animasi */
+.timerInstance.animateItem {
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Terapkan animasi ke anak-anak dari .sectionHeader saat .animateItem ditambahkan */
+.sectionHeader.animateItem .title,
+.sectionHeader.animateItem .subtitle,
+.sectionHeader.animateItem .ornament {
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Atur delay untuk elemen header */
+.sectionHeader.animateItem .title { animation-delay: 0.1s; }
+.sectionHeader.animateItem .subtitle { animation-delay: 0.3s; }
+.sectionHeader.animateItem .ornament { animation-delay: 0.5s; }
+
+/* PERBAIKAN: Atur variabel delay untuk kartu timer */
+.timersContainer > .timerInstance:nth-of-type(1) { --animation-delay: 0.7s; }
+.timersContainer > .timerInstance:nth-of-type(2) { --animation-delay: 0.9s; }
+
+/* Atur delay untuk pesan penutup */
+.message.animateItem .messageText {
+  animation: fadeInUp 0.8s ease both;
+  animation-delay: 1.1s;
 }
 
 /* Untuk layar tablet kecil & ponsel besar (di bawah 768px) */

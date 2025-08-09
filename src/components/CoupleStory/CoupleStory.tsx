@@ -1,40 +1,89 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './CoupleStory.module.css';
 
 const CoupleStory: React.FC = () => {
+  // Satu ref untuk menampung semua elemen yang akan dianimasikan
+  const animatedItemsRef = useRef<Array<HTMLElement | null>>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            const animationType = target.dataset.animationType;
+
+            // Terapkan kelas animasi yang sesuai
+            if (animationType === 'flower') {
+              target.classList.add(styles.animateFlower);
+            } else if (animationType === 'story') {
+              target.classList.add(styles.animateStory);
+            }
+            
+            // Berhenti mengamati elemen setelah animasi dipicu
+            obs.unobserve(target);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Picu saat 20% dari elemen terlihat
+      }
+    );
+
+    animatedItemsRef.current.forEach(item => {
+      if (item) {
+        observer.observe(item);
+      }
+    });
+
+    return () => {
+      animatedItemsRef.current.forEach(item => {
+        if (item) {
+          observer.unobserve(item);
+        }
+      });
+    };
+  }, []);
+
   return (
     <div className={styles.storySection}>
-      {/* Dekorasi bunga di atas kiri */}
+      {/* Dekorasi bunga dengan ref dan data-attribute */}
       <img
-        src="/images/flower-decoration-1.png"
+        ref={(el) => { animatedItemsRef.current[0] = el; }}
+        data-animation-type="flower"
+        src="/images/flower-decoration-1a.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topLeftDecoration}`}
       />
-
-      {/* Dekorasi bunga di atas kanan */}
       <img
-        src="/images/flower-decoration-1.png"
+        ref={(el) => { animatedItemsRef.current[1] = el; }}
+        data-animation-type="flower"
+        src="/images/flower-decoration-1a.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.topRightDecoration}`}
       />
-
-      {/* Dekorasi bunga di bawah kiri */}
       <img
-        src="/images/flower-decoration-1.png"
+        ref={(el) => { animatedItemsRef.current[2] = el; }}
+        data-animation-type="flower"
+        src="/images/flower-decoration-1b.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.bottomLeftDecoration}`}
       />
-
-      {/* Dekorasi bunga di bawah kanan */}
       <img
-        src="/images/flower-decoration-1.png"
+        ref={(el) => { animatedItemsRef.current[3] = el; }}
+        data-animation-type="flower"
+        src="/images/flower-decoration-1b.png"
         alt="Dekorasi Bunga"
         className={`${styles.flowerDecoration} ${styles.bottomRightDecoration}`}
       />
 
-      {/* Konten utama */}
       <div className={styles.contentWrapper}>
-        <div className={styles.sectionHeader}>
+        {/* PERBAIKAN: Tambahkan ref dan data-attribute ke header */}
+        <div 
+          className={styles.sectionHeader}
+          ref={(el) => { animatedItemsRef.current[4] = el; }}
+          data-animation-type="story"
+        >
           <h2 className={styles.title}>We're Getting Married</h2>
           <p className={styles.subtitle}>Let us present</p>
           <div className={styles.ornament}>
@@ -44,8 +93,12 @@ const CoupleStory: React.FC = () => {
           </div>
         </div>
 
-        {/* Konten pasangan */}
-        <div className={styles.contentContainer}>
+        {/* Konten pasangan 1 dengan ref dan data-attribute */}
+        <div 
+          ref={(el) => { animatedItemsRef.current[5] = el; }}
+          data-animation-type="story"
+          className={styles.contentContainer}
+        >
           <div className={styles.imageContainer}>
             <img src="/images/image1.jpg" alt="Diva Alkinzi" className={styles.storyImage} />
           </div>
@@ -57,7 +110,12 @@ const CoupleStory: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.contentContainer}>
+        {/* Konten pasangan 2 dengan ref dan data-attribute */}
+        <div 
+          ref={(el) => { animatedItemsRef.current[6] = el; }}
+          data-animation-type="story"
+          className={styles.contentContainer}
+        >
           <div className={styles.imageContainer}>
             <img src="/images/image1.jpg" alt="Melsi Agustia" className={styles.storyImage} />
           </div>

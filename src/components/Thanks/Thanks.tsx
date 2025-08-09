@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Thanks.module.css';
 
 const Thanks: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          if (sectionRef.current) {
+            observer.unobserve(sectionRef.current);
+          }
+        }
+      },
+      {
+        threshold: 0.65, // Picu animasi saat 25% section terlihat
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className={styles.thanks}>
+    <section 
+      ref={sectionRef}
+      className={`${styles.thanks} ${isVisible ? styles.animate : ''}`}
+    >
       <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h2 className={styles.title}>Terima Kasih</h2>

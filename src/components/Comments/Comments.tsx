@@ -27,6 +27,9 @@ const Comments: React.FC = () => {
   const [notification, setNotification] = useState('');
   const [visibleCount, setVisibleCount] = useState(COMMENTS_PER_PAGE);
   const commentsListHeaderRef = useRef<HTMLDivElement>(null);
+  
+  // PERBAIKAN: Gunakan satu ref untuk semua item yang dianimasikan
+  const animatedItemsRef = useRef<Array<HTMLElement | null>>([]);
 
   useEffect(() => {
     const q = query(
@@ -50,6 +53,41 @@ const Comments: React.FC = () => {
     });
     return () => unsubscribe();
   }, []);
+
+  const visibleComments = comments.slice(0, visibleCount);
+
+  // PERBAIKAN: Gunakan satu useEffect untuk semua animasi
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.animateItem);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15, // Satu threshold untuk semua
+      }
+    );
+
+    // Amati semua elemen yang ada di dalam ref
+    const currentItems = animatedItemsRef.current;
+    currentItems.forEach(item => {
+      if (item) {
+        observer.observe(item);
+      }
+    });
+
+    return () => {
+      currentItems.forEach(item => {
+        if (item) {
+          observer.unobserve(item);
+        }
+      });
+    };
+  }, [visibleComments]); // Tetap jalankan saat visibleComments berubah
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -117,8 +155,6 @@ const Comments: React.FC = () => {
     commentsListHeaderRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const visibleComments = comments.slice(0, visibleCount);
-
   if (isLoading) {
     return (
       <section className={styles.commentsSection}>
@@ -135,7 +171,11 @@ const Comments: React.FC = () => {
   return (
     <section className={styles.commentsSection}>
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
+        {/* PERBAIKAN: Tambahkan ref ke header pertama */}
+        <div 
+          className={styles.sectionHeader}
+          ref={(el) => { animatedItemsRef.current[0] = el; }}
+        >
           <h2 className={styles.title}>Ucapan & Doa</h2>
           <p className={styles.subtitle}>Berikan ucapan dan doa terbaik untuk kami</p>
           <div className={styles.ornament}>
@@ -145,7 +185,11 @@ const Comments: React.FC = () => {
           </div>
         </div>
 
-        <div className={styles.formContainer}>
+        {/* PERBAIKAN: Sesuaikan indeks ref untuk form */}
+        <div 
+          ref={(el) => { animatedItemsRef.current[1] = el; }}
+          className={styles.formContainer}
+        >
           <form onSubmit={handleSubmit} className={styles.commentForm}>
             <div className={styles.inputGroup}>
               <label htmlFor="name" className={styles.label}>Nama</label>
@@ -180,7 +224,14 @@ const Comments: React.FC = () => {
           </form>
         </div>
 
-        <div className={styles.sectionHeader} ref={commentsListHeaderRef}>
+        {/* PERBAIKAN: Tambahkan ref ke header kedua */}
+        <div 
+          className={styles.sectionHeader} 
+          ref={(el) => { 
+            commentsListHeaderRef.current = el; // Untuk scroll
+            animatedItemsRef.current[2] = el; // Untuk animasi
+          }}
+        >
           <h3 className={styles.title}>
             Ucapan dari Teman & Keluarga
           </h3>
@@ -195,8 +246,13 @@ const Comments: React.FC = () => {
         ) : (
           <>
             <div className={styles.commentsList}>
-              {visibleComments.map((comment) => (
-                <div key={comment.id} className={styles.commentCard}>
+              {visibleComments.map((comment, index) => (
+                <div 
+                  key={comment.id} 
+                  className={styles.commentCard}
+                  // PERBAIKAN: Sesuaikan indeks ref untuk kartu komentar
+                  ref={(el) => { animatedItemsRef.current[index + 3] = el; }}
+                >
                   <div className={styles.commentHeader}>
                     <div className={styles.commentAuthor}>
                       <span className={styles.authorName}>{comment.name}</span>

@@ -126,6 +126,48 @@
 /* =================================================================== */
 /*                             ANIMASI                                 */
 /* =================================================================== */
+
+/* Atur kondisi awal elemen yang akan dianimasikan */
+.preTitle,
+.coupleNames > span,
+.weddingDate,
+.invitation,
+.openButton {
+  opacity: 0;
+}
+
+/* Keyframe untuk animasi masuk */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terapkan animasi saat kelas .animateContent ditambahkan */
+.animateContent .preTitle,
+.animateContent .coupleNames > span,
+.animateContent .weddingDate,
+.animateContent .invitation,
+.animateContent .openButton {
+  /* Gunakan 'forwards' agar state akhir tetap berlaku */
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Atur jeda waktu agar elemen muncul satu per satu */
+.animateContent .preTitle { animation-delay: 0.3s; }
+.animateContent .coupleNames > span:nth-child(1) { animation-delay: 0.5s; }
+.animateContent .coupleNames > span:nth-child(2) { animation-delay: 0.7s; }
+.animateContent .coupleNames > span:nth-child(3) { animation-delay: 0.9s; }
+.animateContent .weddingDate { animation-delay: 1.1s; }
+.animateContent .invitation { animation-delay: 1.4s; }
+.animateContent .openButton { animation-delay: 1.7s; }
+
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }

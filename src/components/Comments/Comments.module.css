@@ -23,6 +23,8 @@
   font-family: 'Great Vibes', cursive;
   margin-bottom: 1rem;
   text-shadow: 1px 1px 2px var(--color-primary-darkest-alpha-30);
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .subtitle {
@@ -31,6 +33,8 @@
   font-style: italic;
   font-family: 'Playfair Display', serif;
   margin-bottom: 1rem;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .ornament {
@@ -39,6 +43,8 @@
   justify-content: center;
   gap: 1rem;
   margin: 1.5rem 0;
+  /* Sembunyikan pada awalnya */
+  opacity: 0;
 }
 
 .decorativeElement {
@@ -63,6 +69,8 @@
   box-shadow: 0 10px 30px var(--color-primary-darkest-alpha-20);
   border: 1px solid var(--color-primary-medium-alpha-20);
   margin-bottom: 4rem;
+  /* PERBAIKAN: Sembunyikan form pada awalnya */
+  opacity: 0;
 }
 
 .commentForm {
@@ -180,7 +188,8 @@
   box-shadow: 0 5px 20px var(--color-primary-darkest-alpha-20);
   border: 1px solid var(--color-primary-medium-alpha-20);
   transition: all 0.3s ease;
-  animation: slideInUp 0.5s ease;
+  /* Hapus animasi otomatis dan sembunyikan elemen */
+  opacity: 0;
 }
 
 .commentCard:hover {
@@ -278,6 +287,24 @@
     transform: translateY(0);
   }
 }
+
+/* Kelas ini akan ditambahkan oleh JavaScript untuk memicu animasi */
+.animateItem {
+  opacity: 1;
+  animation: slideInUp 0.5s ease both;
+}
+
+/* PERBAIKAN: Tambahkan aturan animasi untuk header */
+.sectionHeader.animateItem .title,
+.sectionHeader.animateItem .subtitle,
+.sectionHeader.animateItem .ornament {
+  animation: slideInUp 0.8s ease both;
+}
+
+/* PERBAIKAN: Tambahkan delay untuk header */
+.sectionHeader.animateItem .title { animation-delay: 0.1s; }
+.sectionHeader.animateItem .subtitle { animation-delay: 0.3s; }
+.sectionHeader.animateItem .ornament { animation-delay: 0.5s; }
 
 /* =================================================================== */
 /*                        DESAIN RESPONSIVE                            */

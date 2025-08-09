@@ -116,11 +116,11 @@
   }
 }
 
-/* Animation effects */
-.quotesSection {
-  animation: fadeInUp 0.8s ease;
-}
+/* =================================================================== */
+/*                             ANIMASI                                 */
+/* =================================================================== */
 
+/* Definisikan keyframe untuk animasi masuk */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -132,11 +132,27 @@
   }
 }
 
-/* Image hover effects */
-.quotesImage:nth-child(1) {
+/* Sembunyikan elemen pada awalnya */
+.textContainer,
+.quotesImage {
+  opacity: 0;
+}
+
+/* Terapkan animasi HANYA ketika kelas .animate ada di parent */
+.animate .textContainer,
+.animate .quotesImage {
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* Atur delay untuk menciptakan efek staggered (muncul satu per satu) */
+.animate .textContainer {
   animation-delay: 0.2s;
 }
 
-.quotesImage:nth-child(2) {
+.animate .quotesImage:nth-of-type(1) {
   animation-delay: 0.4s;
+}
+
+.animate .quotesImage:nth-of-type(2) {
+  animation-delay: 0.6s;
 }

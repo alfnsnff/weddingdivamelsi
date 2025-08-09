@@ -61,6 +61,44 @@
     color: var(--color-accent-primary);
 }
 
+/* =================================================================== */
+/*                             ANIMASI                                 */
+/* =================================================================== */
+
+/* Atur kondisi awal elemen yang akan dianimasikan */
+.title,
+.paragraph,
+.subheading,
+.names {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Atur kondisi akhir saat kelas .animate ditambahkan ke parent */
+.animate .title,
+.animate .paragraph,
+.animate .subheading,
+.animate .names {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Beri jeda waktu agar muncul satu per satu */
+.animate .title {
+  transition-delay: 0.2s;
+}
+.animate .paragraph {
+  transition-delay: 0.4s;
+}
+.animate .subheading {
+  transition-delay: 0.6s;
+}
+.animate .names {
+  transition-delay: 0.8s;
+}
+
+
 /* Desain Responsif */
 @media (max-width: 768px) {
   .thanks {

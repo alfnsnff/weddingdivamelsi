@@ -9,6 +9,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onOpenInvitation, isInvitationOpen }) => {
   const [guestName, setGuestName] = useState('Bapak/Ibu/Saudara/i'); // Default name
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,11 +17,18 @@ const Hero: React.FC<HeroProps> = ({ onOpenInvitation, isInvitationOpen }) => {
     if (to) {
       setGuestName(to.replace(/_/g, ' ')); // Ganti underscore dengan spasi jika perlu
     }
+
+    // Memicu animasi setelah komponen dimuat
+    const timer = setTimeout(() => {
+      setIsContentLoaded(true);
+    }, 100); // Sedikit jeda untuk memastikan render selesai
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className={styles.hero}>
-      <div className={`${styles.overlay} ${isInvitationOpen ? styles.stopped : ''}`}>
+      <div className={`${styles.overlay} ${isInvitationOpen ? styles.stopped : ''} ${isContentLoaded ? styles.animateContent : ''}`}>
         <div className={styles.contentContainer}>
           <p className={styles.preTitle}>The Wedding Of</p>
           <h1 className={styles.coupleNames}>
