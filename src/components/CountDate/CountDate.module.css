@@ -312,6 +312,9 @@
     font-size: 1.6rem;
     margin-bottom: 1rem;
   }
+  .countdown {
+    gap: 0.5rem; /* Kurangi jarak di layar tablet */
+  }
   .timeValue {
     font-size: 2.2rem;
   }
@@ -341,14 +344,28 @@
     padding: 1.5rem;
   }
   .countdown {
-    flex-wrap: wrap;
-    gap: 1rem;
+    /* PERBAIKAN: Paksa agar tetap satu baris dan kurangi jarak */
+    flex-wrap: nowrap;
+    gap: 0.5rem;
   }
   .timeUnit {
-    flex-basis: 40%;
+    /* PERBAIKAN: Hapus flex-basis agar bisa menyusut secara fleksibel */
+    flex-basis: 0;
+    min-width: 50px; /* Beri lebar minimum agar tidak terlalu sempit */
+  }
+  .timeCard {
+    padding: 1rem 0.25rem; /* Kurangi padding agar lebih ramping */
   }
   .timeValue {
-    font-size: 2rem;
+    /* PERBAIKAN: Kecilkan font angka agar muat */
+    font-size: 1.5rem;
+  }
+  .labelPrimary {
+    font-size: 0.7rem; /* Kecilkan juga font label */
+  }
+  .labelSecondary {
+    font-size: 0.5rem;
+    margin-bottom: 0.2rem; /* Sembunyikan label sekunder (misal: "Days") di layar sangat kecil untuk menghemat ruang */
   }
   .timerTitle {
     font-size: 1.4rem;
